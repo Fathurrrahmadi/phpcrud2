@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<title>test crud 2</title>
+
+<script src="jquery/jquery.min.js"></script>  
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<script src="jquery/bootstrap.min.js"></script>
+<script src="jquery/sweetalert2.all.min.js"></script>
+<link rel="stylesheet" type="text/css" href="datatables/datatables.min.css"/>
+<script type="text/javascript" src="dataTables/datatables.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1>test</h1>
+
+        <div class="top-panel">
+            <a href="javascript:void(0);" class="btn btn-primary" onclick="addData()">Add New User</a>
+        </div>
+
+        <table id="dataList" class="display" style="width:100%">
+    <thead>
+        <tr>
+            <th>idsfr</th>
+            <th>NAMA PENGGUNA</th>
+            <th>DINAS</th>
+            <th>SUBSERVICE</th>
+            <th>LOKASI</th>
+            <th>NOMOR SPT</th>
+            <th>JENIS PELANGGARAN</th>
+            <th>TINDAKAN</th>
+            <th>STATUS</th>
+            <th>TGL OPERASI</th>
+            <th>NO ISR TELAH SETELAH PENINDAKAN</th>
+            <th>NO SURAT PENINDAKAN</th>
+            <th>TANGGAL TINDAKAN</th>
+            <th>KETERANGAN</th>
+        </tr>
+    </thead>
+</table>
+</div>
+<div class="modal fade" id="userDataModal" tabindex="-1" aria-labelledby="userAddEditModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="userModalLabel">Add New User</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form name="userDataFrm" id="userDataFrm">
+            <div class="modal-body">
+                <div class="frm-status"></div>
+                <div class="mb-3">
+                    <label for="userFirstName" class="form-label">First Name</label>
+                    <input type="text" class="form-control" id="userFirstName" placeholder="Enter firstname">
+                </div>
+                <div class="mb-3">
+                    <label for="userLastName" class="form-label">Last Name</label>
+                    <input type="text" class="form-control" id="userLastName" placeholder="Enter lastname">
+                </div>
+                <div class="mb-3">
+                    <label for="userEmail" class="form-label">Email address</label>
+                    <input type="email" class="form-control" id="userEmail" placeholder="Enter email">
+                </div>
+                <div class="form-radio">
+                    <label>Gender:</label>
+                    <input type="radio" name="userGender" id="userGender_1" value="Male" checked> Male 
+                    &nbsp;&nbsp; 
+                    <input type="radio" name="userGender" id="userGender_2" value="Female"> Female
+                </div>
+                <div class="mb-3">
+                    <label for="userCountry" class="form-label">Country</label>
+                    <input type="text" class="form-control" id="userCountry" placeholder="Enter country">
+                </div>
+                <div class="form-radio">
+                    <label>Status:</label>
+                    <input type="radio" name="userStatus" id="userStatus_1" value="1" checked> Active &nbsp;&nbsp;
+                    <input type="radio" name="userStatus" id="userStatus_2" value="0"> Inactive
+                </div>
+            </div>
+            <div class="modal-footer">
+                <input type="hidden" id="userID" value="0">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" onclick="submitUserData()">Submit</button>
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+<script>
+    var table = $('#dataList').DataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": "fetchData.php",
+        "columnDefs": [
+            { "orderable": false, "targets": 7 }
+        ]
+    });
+    
+    $(document).ready(function(){
+        // Draw the table
+        table.draw();
+    });
+</script>
+</body>
+</table>
+</html>
